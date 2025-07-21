@@ -1,11 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Clock, Shield, Users, Heart, Brain, Phone, Mail, MessageCircle } from "lucide-react"
+import { useConversionTracking } from "@/components/conversion-tracking"
 
 export default function Home() {
+  const { trackWhatsAppClick, trackPhoneClick, trackEmailClick, trackScheduleClick } = useConversionTracking()
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -32,34 +37,37 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-[#d9a6a0] hover:bg-[#c79690] text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <a
-                    href="https://wa.me/5587999489597"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+              <div className="btn-highlight-box">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="btn-primary-cta text-white rounded-full px-8 py-6 text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105"
                   >
-                    <MessageCircle className="w-5 h-5" />
-                    Quero conversar agora
-                  </a>
-                </Button>
+                    <a
+                      href="https://wa.me/5587999489597"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3"
+                      onClick={trackWhatsAppClick}
+                    >
+                      <MessageCircle className="w-6 h-6 icon-bounce" />
+                      Quero conversar agora
+                    </a>
+                  </Button>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-[#d9a6a0] text-[#d9a6a0] hover:bg-[#d9a6a0] hover:text-white rounded-full px-8 py-6 text-lg font-medium transition-all duration-300 bg-transparent"
-                  asChild
-                >
-                  <a href="#sobre" className="flex items-center gap-2">
-                    <Heart className="w-5 h-5" />
-                    Conhecer mais
-                  </a>
-                </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="btn-secondary-cta text-[#d9a6a0] hover:text-white rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300 transform hover:scale-105 bg-transparent"
+                    asChild
+                  >
+                    <a href="#sobre" className="flex items-center gap-3">
+                      <Heart className="w-6 h-6 icon-bounce" />
+                      Conhecer mais
+                    </a>
+                  </Button>
+                </div>
               </div>
 
               <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
@@ -223,21 +231,24 @@ export default function Home() {
                 ))}
               </div>
 
-              <Button
-                asChild
-                size="lg"
-                className="bg-[#d9a6a0] hover:bg-[#c79690] text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <a
-                  href="https://wa.me/5587999489597"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+              <div className="btn-highlight-box">
+                <Button
+                  asChild
+                  size="lg"
+                  className="btn-primary-cta text-white rounded-full px-8 py-6 text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 w-full"
                 >
-                  <MessageCircle className="w-5 h-5" />
-                  Começar minha jornada
-                </a>
-              </Button>
+                  <a
+                    href="https://wa.me/5587999489597"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3"
+                    onClick={trackScheduleClick}
+                  >
+                    <MessageCircle className="w-6 h-6 icon-bounce" />
+                    Começar minha jornada
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -379,21 +390,24 @@ export default function Home() {
               que a terapia pode te ajudar a encontrar caminhos para o bem-estar e crescimento pessoal.
             </p>
 
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#d9a6a0] hover:bg-[#c79690] text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <a
-                href="https://wa.me/5587999489597"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
+            <div className="btn-highlight-box max-w-md mx-auto">
+              <Button
+                asChild
+                size="lg"
+                className="btn-primary-cta text-white rounded-full px-8 py-6 text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 w-full"
               >
-                <MessageCircle className="w-5 h-5" />
-                Quero agendar uma consulta
-              </a>
-            </Button>
+                <a
+                  href="https://wa.me/5587999489597"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-3"
+                  onClick={trackScheduleClick}
+                >
+                  <MessageCircle className="w-6 h-6 icon-bounce" />
+                  Quero agendar uma consulta
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -459,21 +473,24 @@ export default function Home() {
                   ))}
                 </div>
 
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-[#d9a6a0] hover:bg-[#c79690] text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <a
-                    href="https://wa.me/5587999489597"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+                <div className="btn-highlight-box">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="btn-primary-cta text-white rounded-full px-8 py-6 text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105 w-full"
                   >
-                    <MessageCircle className="w-5 h-5" />
-                    Agendar primeira sessão
-                  </a>
-                </Button>
+                    <a
+                      href="https://wa.me/5587999489597"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3"
+                      onClick={trackScheduleClick}
+                    >
+                      <MessageCircle className="w-6 h-6 icon-bounce" />
+                      Agendar primeira sessão
+                    </a>
+                  </Button>
+                </div>
               </div>
 
               <div className="relative">
@@ -573,34 +590,37 @@ export default function Home() {
                 o seu momento atual e como posso te ajudar.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-[#d9a6a0] hover:bg-[#c79690] text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <a
-                    href="https://wa.me/5587999489597"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+              <div className="btn-highlight-box">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="btn-whatsapp text-white rounded-full px-8 py-6 text-lg font-bold shadow-2xl transition-all duration-300 transform hover:scale-105"
                   >
-                    <MessageCircle className="w-5 h-5" />
-                    Conversar no WhatsApp
-                  </a>
-                </Button>
+                    <a
+                      href="https://wa.me/5587999489597"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3"
+                      onClick={trackWhatsAppClick}
+                    >
+                      <MessageCircle className="w-6 h-6 icon-bounce" />
+                      Conversar no WhatsApp
+                    </a>
+                  </Button>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-[#d9a6a0] text-[#d9a6a0] hover:bg-[#d9a6a0] hover:text-white rounded-full px-8 py-6 text-lg font-medium transition-all duration-300 bg-transparent"
-                  asChild
-                >
-                  <a href="tel:+5587999489597" className="flex items-center gap-2">
-                    <Phone className="w-5 h-5" />
-                    Ligar agora
-                  </a>
-                </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="btn-phone text-white rounded-full px-8 py-6 text-lg font-bold shadow-xl transition-all duration-300 transform hover:scale-105 bg-transparent"
+                    asChild
+                  >
+                    <a href="tel:+5587999489597" className="flex items-center gap-3" onClick={trackPhoneClick}>
+                      <Phone className="w-6 h-6 icon-bounce" />
+                      Ligar agora
+                    </a>
+                  </Button>
+                </div>
               </div>
 
               <div className="border-t border-gray-200 pt-8">
@@ -611,6 +631,7 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 text-gray-700 hover:text-[#d9a6a0] transition-colors duration-200"
+                    onClick={trackWhatsAppClick}
                   >
                     <MessageCircle className="w-5 h-5" />
                     <span className="font-medium">WhatsApp</span>
@@ -618,6 +639,7 @@ export default function Home() {
                   <a
                     href="mailto:contato@thaisaalves.com"
                     className="flex items-center space-x-3 text-gray-700 hover:text-[#d9a6a0] transition-colors duration-200"
+                    onClick={trackEmailClick}
                   >
                     <Mail className="w-5 h-5" />
                     <span className="font-medium">E-mail</span>
@@ -625,6 +647,7 @@ export default function Home() {
                   <a
                     href="tel:+5587999489597"
                     className="flex items-center space-x-3 text-gray-700 hover:text-[#d9a6a0] transition-colors duration-200"
+                    onClick={trackPhoneClick}
                   >
                     <Phone className="w-5 h-5" />
                     <span className="font-medium">Telefone</span>
@@ -646,7 +669,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h3 className="text-2xl font-serif font-medium mb-4">{"Dra. Thaisa Alves"}</h3>
+              <h3 className="text-2xl font-serif font-medium mb-4">Dra. Thaisa Alves</h3>
               <p className="text-gray-300 mb-6">Psicóloga especializada em terapia online • CRP: 02/26867</p>
 
               <div className="flex justify-center space-x-6 mb-8">
