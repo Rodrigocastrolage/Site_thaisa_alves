@@ -27,7 +27,7 @@ export function useConversionTracking() {
     // Google Ads conversion
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
-        send_to: "AW-979108488/whatsapp_click",
+        send_to: "AW-17383698586/whatsapp_click",
         value: 1.0,
         currency: "BRL",
       })
@@ -49,7 +49,7 @@ export function useConversionTracking() {
 
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
-        send_to: "AW-979108488/phone_click",
+        send_to: "AW-17383698586/phone_click",
         value: 1.0,
         currency: "BRL",
       })
@@ -70,7 +70,7 @@ export function useConversionTracking() {
 
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
-        send_to: "AW-979108488/email_click",
+        send_to: "AW-17383698586/email_click",
         value: 1.0,
         currency: "BRL",
       })
@@ -91,7 +91,7 @@ export function useConversionTracking() {
 
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
-        send_to: "AW-979108488/schedule_click",
+        send_to: "AW-17383698586/schedule_click",
         value: 5.0,
         currency: "BRL",
       })

@@ -33,41 +33,17 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        {/* Google Tag Manager */}
+        {/* Google tag (gtag.js) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-17383698586" strategy="afterInteractive" />
         <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-XXXXXXX');
-            `,
-          }}
-        />
-
-        {/* Google Ads */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-979108488" strategy="afterInteractive" />
-        <Script
-          id="google-ads"
+          id="gtag-config"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-979108488');
-              
-              gtag('event', 'page_view', {
-                'send_to': 'AW-979108488',
-                'value': 1,
-                'items': [{
-                  'id': 'landing_page_view',
-                  'google_business_vertical': 'custom'
-                }]
-              });
+              gtag('config', 'AW-17383698586');
             `,
           }}
         />
@@ -92,19 +68,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} ${playfair.variable}`}>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
-        {children}
-      </body>
+      <body className={`${inter.className} ${playfair.variable}`}>{children}</body>
     </html>
   )
 }
