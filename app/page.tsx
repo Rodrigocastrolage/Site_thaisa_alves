@@ -586,8 +586,7 @@ export default function Home() {
               </h2>
 
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Agende uma conversa inicial sem compromisso. Vamos entender juntas se a terapia comigo faz sentido para
-                o seu momento atual e como posso te ajudar.
+                Vamos entender juntas se a terapia comigo faz sentido para o seu momento atual e de que forma posso te ajudar nesse processo.
               </p>
 
               <div className="btn-highlight-box">
