@@ -107,10 +107,36 @@ export function useConversionTracking() {
     console.log("Schedule click tracked")
   }
 
+  const trackLeadFormSubmit = () => {
+    if (!isLoaded) return
+
+    // Google Ads conversion - Event snippet for Enviar formulário de lead
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17383698586/ErmLCLDf1PUaEJrhmOFA",
+        value: 1.0,
+        currency: "BRL",
+      })
+    }
+
+    // Facebook Pixel
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "Lead", {
+        content_name: "Lead Form Submit",
+        content_category: "Lead Generation",
+        value: 1.0,
+        currency: "BRL",
+      })
+    }
+
+    console.log("Lead form submit tracked")
+  }
+
   return {
     trackWhatsAppClick,
     trackPhoneClick,
     trackEmailClick,
     trackScheduleClick,
+    trackLeadFormSubmit,
   }
 }
