@@ -6,6 +6,7 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void
     fbq?: (...args: any[]) => void
+    dataLayer?: any[]
   }
 }
 
@@ -24,12 +25,32 @@ export function useConversionTracking() {
   const trackWhatsAppClick = () => {
     if (!isLoaded) return
 
+    // GTM DataLayer Event
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "whatsapp_click",
+        event_category: "Contact",
+        event_action: "Click",
+        event_label: "WhatsApp Button",
+        contact_method: "WhatsApp",
+        value: 1.0,
+        currency: "BRL",
+      })
+    }
+
     // Google Ads conversion
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
         send_to: "AW-17383698586/whatsapp_click",
         value: 1.0,
         currency: "BRL",
+      })
+
+      // GA4 Event
+      window.gtag("event", "generate_lead", {
+        currency: "BRL",
+        value: 1.0,
+        method: "WhatsApp",
       })
     }
 
@@ -47,11 +68,31 @@ export function useConversionTracking() {
   const trackPhoneClick = () => {
     if (!isLoaded) return
 
+    // GTM DataLayer Event
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "phone_click",
+        event_category: "Contact",
+        event_action: "Click",
+        event_label: "Phone Button",
+        contact_method: "Phone",
+        value: 1.0,
+        currency: "BRL",
+      })
+    }
+
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
         send_to: "AW-17383698586/phone_click",
         value: 1.0,
         currency: "BRL",
+      })
+
+      // GA4 Event
+      window.gtag("event", "generate_lead", {
+        currency: "BRL",
+        value: 1.0,
+        method: "Phone",
       })
     }
 
@@ -68,11 +109,31 @@ export function useConversionTracking() {
   const trackEmailClick = () => {
     if (!isLoaded) return
 
+    // GTM DataLayer Event
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "email_click",
+        event_category: "Contact",
+        event_action: "Click",
+        event_label: "Email Button",
+        contact_method: "Email",
+        value: 1.0,
+        currency: "BRL",
+      })
+    }
+
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
         send_to: "AW-17383698586/email_click",
         value: 1.0,
         currency: "BRL",
+      })
+
+      // GA4 Event
+      window.gtag("event", "generate_lead", {
+        currency: "BRL",
+        value: 1.0,
+        method: "Email",
       })
     }
 
@@ -89,11 +150,31 @@ export function useConversionTracking() {
   const trackScheduleClick = () => {
     if (!isLoaded) return
 
+    // GTM DataLayer Event
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "schedule_click",
+        event_category: "Appointment",
+        event_action: "Click",
+        event_label: "Schedule Button",
+        contact_method: "Schedule",
+        value: 5.0,
+        currency: "BRL",
+      })
+    }
+
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
         send_to: "AW-17383698586/schedule_click",
         value: 5.0,
         currency: "BRL",
+      })
+
+      // GA4 Event
+      window.gtag("event", "begin_checkout", {
+        currency: "BRL",
+        value: 5.0,
+        method: "Schedule",
       })
     }
 
@@ -110,12 +191,32 @@ export function useConversionTracking() {
   const trackLeadFormSubmit = () => {
     if (!isLoaded) return
 
+    // GTM DataLayer Event
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "lead_form_submit",
+        event_category: "Lead Generation",
+        event_action: "Submit",
+        event_label: "Lead Form",
+        form_type: "Lead Generation",
+        value: 1.0,
+        currency: "BRL",
+      })
+    }
+
     // Google Ads conversion - Event snippet for Enviar formulário de lead
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "conversion", {
         send_to: "AW-17383698586/ErmLCLDf1PUaEJrhmOFA",
         value: 1.0,
         currency: "BRL",
+      })
+
+      // GA4 Event
+      window.gtag("event", "generate_lead", {
+        currency: "BRL",
+        value: 1.0,
+        method: "Form",
       })
     }
 
